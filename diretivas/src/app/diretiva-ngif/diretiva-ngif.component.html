@@ -1,1 +1,39 @@
-<p>diretiva-ngif works!</p>
+<h5>Usando *ngIf para exibir e esconder elementos HTML</h5>
+
+<div *ngIf="cursos.length > 0">
+    Lista de cursos aqui.
+</div>
+
+<div *ngIf="cursos.length == 0">
+    Não existem cursos para serem listados
+</div>
+
+<br>
+
+<!-- Performance ruim para manipulação de visibilidade dos elementos DOM -->
+
+<div *ngIf="mostrarCursos">
+    Lista de cursos aqui.
+</div>
+
+<div *ngIf="!mostrarCursos">
+    Não existem cursos para serem listados
+</div>
+
+<br>
+
+<!-- Melhor performance para manipulação dos elementos DOM -->
+
+<h5>hidden como alternartiva</h5>
+
+<div [hidden]="!mostrarCursos">  
+    Lista de cursos aqui.
+</div>
+
+<div [hidden]="mostrarCursos"> <!-- se a flag 'mostrarCursos' for true, será aplicada a propriedade 'hidden' para esconder o elemento -->
+    Não existem cursos para serem listados
+</div>
+
+<br>
+
+<button (click)="onMostrarCursos()">Mostrar ou esconder cursos</button>
