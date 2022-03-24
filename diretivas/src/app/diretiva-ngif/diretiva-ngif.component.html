@@ -26,14 +26,27 @@
 
 <h5>hidden como alternartiva</h5>
 
-<div [hidden]="!mostrarCursos">  
+<div [hidden]="!mostrarCursos">
     Lista de cursos aqui.
 </div>
 
-<div [hidden]="mostrarCursos"> <!-- se a flag 'mostrarCursos' for true, será aplicada a propriedade 'hidden' para esconder o elemento -->
+<div [hidden]="mostrarCursos">
+    <!-- se a flag 'mostrarCursos' for true, será aplicada a propriedade 'hidden' para esconder o elemento -->
     Não existem cursos para serem listados
 </div>
 
 <br>
 
 <button (click)="onMostrarCursos()">Mostrar ou esconder cursos</button>
+
+<br>
+
+<h5>Removendo o * e usando template</h5>
+
+<div *ngIf="mostrarCursos">
+    
+</div>
+
+<ng-template [ngIf]="mostrarCursos">
+    <div>Lista de cursos aqui.</div>
+</ng-template>
