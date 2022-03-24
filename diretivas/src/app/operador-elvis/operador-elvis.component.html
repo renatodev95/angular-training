@@ -1,0 +1,7 @@
+<h3>Operador Elvis ("?")</h3>
+
+<p>Descrição: {{ tarefa.desc }}</p>
+<!-- <p>Responsável: {{ tarefa.responsavel != null ? tarefa.responsavel.nome : "" }}</p> -->
+
+<!-- Forma segura e legível de navegar entre variáveis e objetos que podem ser nulos -->
+<p>Responsável: {{ tarefa.responsavel?.usuario?.nome}}</p>
