@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
+import { CursosComponent } from './cursos/cursos.component';
+import { CursosService } from './cursos/cursos.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { CursosComponent } from './cursos/cursos.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
+import { CursoNaoEncontradoComponent } from './curso-nao-encontrado/curso-nao-encontrado.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
     HomeComponent,
     LoginComponent,
     CursosComponent,
-    CursoDetalheComponent
+    CursoDetalheComponent,
+    CursoNaoEncontradoComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
     BrowserAnimationsModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers: [CursosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
