@@ -3,7 +3,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a routerLinkActive="active" class="nav-item nav-link" routerLink="/login">Login</a>
-            <a routerLinkActive="active" class="nav-item nav-link" routerLink="/cursos">Cursos</a>
+            <a routerLinkActive="active" class="nav-item nav-link" routerLink="/cursos" [queryParams]="{pagina:1}">Cursos</a>
             <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['curso', idCurso.value]">Curso com Id</a>
         </div>
     </div>

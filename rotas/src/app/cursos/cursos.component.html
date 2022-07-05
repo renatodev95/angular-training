@@ -1,7 +1,8 @@
 <p>Lista de Cursos</p>
-
+<p>Página: {{ pagina }}</p>
 <div class="list-group">
     <a class="list-group-item list-group-item-action" *ngFor="let curso of cursos" [routerLink]="['/curso', curso.id]">
         {{ curso.nome }}
     </a>
 </div>
+<button (click)="proximaPagina()">Next Page</button>
