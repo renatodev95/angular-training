@@ -33,7 +33,7 @@ export class CursosComponent implements OnInit, OnDestroy {
 
   proximaPagina() {
     // this.pagina++;
-    this.router.navigate(['cursos'],
-    {queryParams: {'pagina': ++this.pagina}})
+    // Incrementando o valor da variável pagina e redirecionando a rota para o parametro de mesmo valor
+    this.router.navigate(['cursos'], {queryParams: {'pagina': ++this.pagina}});
   }
 }
