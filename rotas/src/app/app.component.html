@@ -4,13 +4,13 @@
         <div class="navbar-nav">
             <a routerLinkActive="active" class="nav-item nav-link" routerLink="/login">Login</a>
             <a routerLinkActive="active" class="nav-item nav-link" routerLink="/cursos" [queryParams]="{pagina:1}">Cursos</a>
-            <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['curso', idCurso.value]">Curso com Id</a>
+            <!-- <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['curso', idCurso.value]">Curso com Id</a> -->
             <a routerLinkActive="active" class="nav-item nav-link" routerLink="/alunos">Alunos</a>
         </div>
     </div>
 </nav>
 <div class="container">
-    <p>Entre com o id do curso</p>
-    <input #idCurso>
+    <!-- <p>Entre com o id do curso</p>
+    <input #idCurso> -->
     <router-outlet></router-outlet>
 </div>

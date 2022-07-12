@@ -1,3 +1,15 @@
-<p>alunos works!</p>
+<div class="row">
+    <div class="col">
+        <h5>Lista de Alunos</h5>
+        <br>
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action" *ngFor="let aluno of alunos" [routerLink]="[aluno.id]">
+                {{ aluno.nome }}
+            </a>
+        </div>
+    </div>
 
-<router-outlet></router-outlet>
+    <div class="col">
+        <router-outlet></router-outlet>
+    </div>
+</div>

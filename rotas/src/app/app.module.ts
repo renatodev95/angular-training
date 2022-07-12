@@ -8,6 +8,7 @@ import { AlunosModule } from './alunos/alunos.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CursosModule } from './cursos/cursos.module';
+import { CursosRoutingModule } from './cursos/cursos.routing.module';
 import { CursosService } from './cursos/cursos.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -32,7 +33,8 @@ import { LoginComponent } from './login/login.component';
     MatToolbarModule,
     CursosModule,
     AppRoutingModule,
-    AlunosModule
+    AlunosModule,
+    CursosRoutingModule
   ],
   providers: [CursosService],
   bootstrap: [AppComponent]
