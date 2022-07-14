@@ -9,8 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CursosModule } from './cursos/cursos.module';
 import { CursosRoutingModule } from './cursos/cursos.routing.module';
-import { CursosService } from './cursos/cursos.service';
 import { HomeComponent } from './home/home.component';
+import { AuthService } from './login/auth.service';
 import { LoginComponent } from './login/login.component';
 
 // import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.component';
@@ -36,7 +36,7 @@ import { LoginComponent } from './login/login.component';
     AlunosModule,
     CursosRoutingModule
   ],
-  providers: [CursosService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
