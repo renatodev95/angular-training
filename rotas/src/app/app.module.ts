@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CursosRoutingModule } from './cursos/cursos.routing.module';
+import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './login/auth.service';
 import { LoginComponent } from './login/login.component';
@@ -36,7 +37,7 @@ import { LoginComponent } from './login/login.component';
     // AlunosModule,
     CursosRoutingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
