@@ -4,15 +4,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AlunosModule } from './alunos/alunos.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CursosModule } from './cursos/cursos.module';
 import { CursosRoutingModule } from './cursos/cursos.routing.module';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './login/auth.service';
 import { LoginComponent } from './login/login.component';
 
+// import { AlunosModule } from './alunos/alunos.module';
+// import { CursosModule } from './cursos/cursos.module';
 // import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.component';
 // import { CursoNaoEncontradoComponent } from './cursos/curso-nao-encontrado/curso-nao-encontrado.component';
 // import { CursosComponent } from './cursos/cursos.component';
@@ -31,9 +31,9 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    CursosModule,
+    // CursosModule,
     AppRoutingModule,
-    AlunosModule,
+    // AlunosModule,
     CursosRoutingModule
   ],
   providers: [AuthService],
