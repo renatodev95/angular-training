@@ -22,5 +22,7 @@
         </div>
     </div>
     <br />
-    <button [disabled]="!f.valid" type="submit" class="btn btn-primary">Submit</button>
+    <button [disabled]="!f.valid" type="submit" class="btn btn-dark">Submit</button>
+
+    <app-form-debug [form]="f"></app-form-debug>
 </form>
