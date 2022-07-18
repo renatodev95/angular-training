@@ -1,17 +1,26 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <div style="margin-top: 10px;" class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" [ngModel]="usuario.nome" required
-            #nome>
-            <!-- <div>
-                {{nome.className}}
-            </div> -->
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <div class="form-group" [class.needs-validation]="!nome.valid && nome.touched"
+        [class.was-validated]="!nome.valid && nome.touched">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" [(ngModel)]="usuario.nome"
+            required #nome="ngModel" />
+        <!-- <div>
+           {{ nome.className }}
+        </div> -->
+        <div *ngIf="!nome.valid && nome.touched" class="alert alert-danger" role="alert">
+            Nome é Obrigatório
+        </div>
     </div>
-    <div style="margin-top: 10px;" class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="nome@mail" name="email"
-            [ngModel]="usuario.email" required email>
+    <br />
+    <div class="form-group" [class.needs-validation]="!email.valid && email.touched"
+        [class.was-validated]="!email.valid && email.touched">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="nome@email.com" name="email"
+            [(ngModel)]="usuario.email" required email #email="ngModel" />
+        <div *ngIf="!email.valid && email.touched" class="alert alert-danger" role="alert">
+            Email é Obrigatório
+        </div>
     </div>
-    <button style="margin-top: 10px;" type="submit" class="btn btn-dark">Submit</button>
-    <!-- Link validações HTML5: https://www.the-art-of-web.com/html/html5-form-validation/ -->
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
