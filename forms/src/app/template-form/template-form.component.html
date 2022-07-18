@@ -28,7 +28,7 @@
         <div class="row gy-2 gx-3 align-items-center">
             <div class="col-sm-3" [ngClass]="aplicaCssErro(cep)">
                 <label for="cep" class="control-label">CEP</label>
-                <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel" (blur)="consultaCEP(cep.value)">
+                <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel" (blur)="consultaCEP(cep.value, f)">
                 <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)" msgErro="CEP é obrigatório">
                 </app-campo-control-erro>
             </div>
@@ -80,7 +80,7 @@
     </div>
 
     <div class="col-auto mt-2">
-        <button [disabled]="!f.valid" type="submit" class="btn btn-dark">Submit</button>
+        <button [disabled]="!f.valid" type="submit" class="btn btn-dark me-md-2">Submit</button>
     </div>
 
     <app-form-debug [form]="f"></app-form-debug>
