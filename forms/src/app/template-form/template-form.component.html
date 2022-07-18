@@ -1,8 +1,11 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div style="margin-top: 10px;" class="form-group">
         <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" [ngModel]="usuario.nome"
-            required>
+        <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" [ngModel]="usuario.nome" required
+            #nome>
+            <!-- <div>
+                {{nome.className}}
+            </div> -->
     </div>
     <div style="margin-top: 10px;" class="form-group">
         <label for="email">Email</label>
@@ -10,4 +13,5 @@
             [ngModel]="usuario.email" required email>
     </div>
     <button style="margin-top: 10px;" type="submit" class="btn btn-dark">Submit</button>
+    <!-- Link validações HTML5: https://www.the-art-of-web.com/html/html5-form-validation/ -->
 </form>
