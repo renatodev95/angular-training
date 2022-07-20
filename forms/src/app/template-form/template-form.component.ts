@@ -21,12 +21,15 @@ export class TemplateFormComponent implements OnInit {
     return !campo.valid && campo.touched;
   }
 
-  onSubmit(form: any) {
-    console.log(form);
+  onSubmit(formulario: any) {
+    console.log(formulario);
     // enviando os dados do form para o endereco do resttest.com
-    this.http.post('https://httpbin.org/post', JSON.stringify(form.value))
+    this.http.post('https://httpbin.org/post', JSON.stringify(formulario.value))
       .pipe(map(res => res))
-      .subscribe(dados => console.log(dados))
+      .subscribe(dados => {
+        console.log(dados);
+        formulario.form.reset();
+      })
   }
 
   aplicaCssErro(campo: any) {
