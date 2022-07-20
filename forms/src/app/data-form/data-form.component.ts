@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -21,20 +21,21 @@ export class DataFormComponent implements OnInit {
     // });
 
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      email: [null]
+      nome: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]]
     });
+    // [Validators.required, Validators.min(3), Validators.max(20)]
   }
 
   onSubmit() {
-    console.log(this.formulario.value)
+    console.log(this.formulario)
     this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
       .pipe(map(res => res))
       .subscribe(dados => {
           console.log(dados);
           // reseta form
           // this.formulario.reset();
-          this.resetar();
+          // this.resetar();
         },
         (error: any) => alert('erro'));
   }
