@@ -80,7 +80,7 @@
       <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.estado')">
         <label for="estado" class="control-label">Estado</label>
         <select class="form-control" id="estado" formControlName="estado">
-        <!--Importante: dê preferencia por usar o pipe ASYNC na hora de utilizar informações que estão vindo de Observables no template HTML-->
+          <!--Importante: dê preferencia por usar o pipe ASYNC na hora de utilizar informações que estão vindo de Observables no template HTML-->
           <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{estado.nome}}</option>
         </select>
         <app-campo-control-erro
@@ -90,9 +90,22 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <div class="col-sm-3" [ngClass]="aplicaCssErro('cargo')">
+      <label for="cargo" class="control-label">Cargo</label>
+      <select class="form-control" id="cargo" formControlName="cargo" [compareWith]="compararCargos">
+        <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{cargo.desc}}</option>
+      </select>
+      <app-campo-control-erro
+        [mostrarErro]="verificaValidTouched('cargo')" msgErro="Cargo é obrigatório">
+      </app-campo-control-erro>
+    </div>
+  </div>
+
   <div class="col-auto mt-2">
     <button type="submit" class="btn btn-dark me-md-2">Submit</button>
     <button class="btn btn-danger me-md-2" (click)="resetar()">Cancelar</button>
+    <button class="btn btn-dark me-md-2" (click)="setarCargo()">Cargo</button>
   </div>
 
   <app-form-debug [form]="formulario"></app-form-debug>
