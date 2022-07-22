@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-template-form',
@@ -25,7 +24,6 @@ export class TemplateFormComponent implements OnInit {
     console.log(formulario);
     // enviando os dados do form para o endereco do resttest.com
     this.http.post('https://httpbin.org/post', JSON.stringify(formulario.value))
-      .pipe(map(res => res))
       .subscribe(dados => {
         console.log(dados);
         formulario.form.reset();
@@ -52,7 +50,6 @@ export class TemplateFormComponent implements OnInit {
         //Consulta o webservice viacep.com.br/
         this.http
           .get(`https://viacep.com.br/ws/${cep}/json`)
-          .pipe(map((dados: any) => dados))
           .subscribe((dados) => this.populaDadosForm(dados, form));
       }
     }
