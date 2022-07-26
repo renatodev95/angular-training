@@ -90,7 +90,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="row gy-2 gx-3 align-items-center">
     <div class="col-sm-3" [ngClass]="aplicaCssErro('cargo')">
       <label for="cargo" class="control-label">Cargo</label>
       <select class="form-control" id="cargo" formControlName="cargo" [compareWith]="compararCargos">
@@ -100,12 +100,20 @@
         [mostrarErro]="verificaValidTouched('cargo')" msgErro="Cargo é obrigatório">
       </app-campo-control-erro>
     </div>
+
+    <div class="col-sm-3" [ngClass]="aplicaCssErro('tecnologias')">
+      <label for="tecnologias" class="control-label">Tecnologias</label>
+      <select multiple class="form-control" id="tecnologias" formControlName="tecnologias">
+        <option *ngFor="let tecnologia of tecnologias" [ngValue]="tecnologia.nome">{{tecnologia.desc}}</option>
+      </select>
+    </div>
   </div>
 
   <div class="col-auto mt-2">
     <button type="submit" class="btn btn-dark me-md-2">Submit</button>
     <button class="btn btn-danger me-md-2" (click)="resetar()">Cancelar</button>
-    <button class="btn btn-dark me-md-2" (click)="setarCargo()">Cargo</button>
+    <button class="btn btn-info me-md-2" (click)="setarCargo()">Cargo</button>
+    <button class="btn btn-info me-md-2" (click)="setarTecnologia()">Cargo</button>
   </div>
 
   <app-form-debug [form]="formulario"></app-form-debug>
