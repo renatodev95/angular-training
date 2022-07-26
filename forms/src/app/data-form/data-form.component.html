@@ -33,7 +33,10 @@
         <label for="cep" class="control-label">CEP</label>
         <input type="text" class="form-control" id="cep" formControlName="cep" (blur)="consultaCEP()" required>
         <app-campo-control-erro
-          [mostrarErro]="verificaValidTouched('endereco.cep')" msgErro="CEP é obrigatório">
+          [mostrarErro]="verificaRequired('endereco.cep')" msgErro="CEP é obrigatório">
+        </app-campo-control-erro>
+        <app-campo-control-erro
+          [mostrarErro]="formulario.get('endereco.cep').hasError('cepInvalido')" msgErro="CEP inválido">
         </app-campo-control-erro>
       </div>
 
