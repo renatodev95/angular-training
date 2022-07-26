@@ -4,7 +4,7 @@
       <label for="nome" class="form-label col-form-label">Nome</label>
     </div>
     <div class="col-sm-12">
-      <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome"/>
+      <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" required/>
       <app-campo-control-erro
         [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório">
       </app-campo-control-erro>
@@ -17,7 +17,7 @@
       <label for="email" class="form-label col-form-label">Email</label>
     </div>
     <div class="col-sm-12">
-      <input type="email" class="form-control" id="email" placeholder="nome@email.com" formControlName="email"/>
+      <input type="email" class="form-control" id="email" placeholder="nome@email.com" formControlName="email" required/>
       <app-campo-control-erro
         [mostrarErro]="verificaValidTouched('email')" msgErro="Email é obrigatório">
       </app-campo-control-erro>
@@ -31,7 +31,7 @@
     <div class="row gy-2 gx-3 align-items-center">
       <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.cep')">
         <label for="cep" class="control-label">CEP</label>
-        <input type="text" class="form-control" id="cep" formControlName="cep" (blur)="consultaCEP()">
+        <input type="text" class="form-control" id="cep" formControlName="cep" (blur)="consultaCEP()" required>
         <app-campo-control-erro
           [mostrarErro]="verificaValidTouched('endereco.cep')" msgErro="CEP é obrigatório">
         </app-campo-control-erro>
@@ -39,7 +39,7 @@
 
       <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.numero')">
         <label for="numero" class="control-label">Numero</label>
-        <input type="text" class="form-control" id="numero" formControlName="numero">
+        <input type="text" class="form-control" id="numero" formControlName="numero" required>
         <app-campo-control-erro
           [mostrarErro]="verificaValidTouched('endereco.numero')" msgErro="Número é obrigatório">
         </app-campo-control-erro>
@@ -55,7 +55,7 @@
     <div class="form-group">
       <div class="col-sm-12" [ngClass]="aplicaCssErro('endereco.rua')">
         <label for="rua" class="control-label">Rua</label>
-        <input type="text" class="form-control" id="rua" formControlName="rua">
+        <input type="text" class="form-control" id="rua" formControlName="rua" required>
         <app-campo-control-erro
           [mostrarErro]="verificaValidTouched('endereco.rua')" msgErro="Rua é obrigatório">
         </app-campo-control-erro>
@@ -65,21 +65,21 @@
     <div class="row gy-2 gx-3 align-items-center">
       <div class="col-sm-5" [ngClass]="aplicaCssErro('endereco.bairro')">
         <label for="bairro" class="control-label">Bairro</label>
-        <input type="text" class="form-control" id="bairro" formControlName="bairro">
+        <input type="text" class="form-control" id="bairro" formControlName="bairro" required>
         <app-campo-control-erro
           [mostrarErro]="verificaValidTouched('endereco.bairro')" msgErro="Bairro é obrigatório">
         </app-campo-control-erro>
       </div>
       <div class="col-sm-4" [ngClass]="aplicaCssErro('endereco.cidade')">
         <label for="cidade" class="control-label">Cidade</label>
-        <input type="text" class="form-control" id="cidade" formControlName="cidade">
+        <input type="text" class="form-control" id="cidade" formControlName="cidade" required>
         <app-campo-control-erro
           [mostrarErro]="verificaValidTouched('endereco.cidade')" msgErro="Cidade é obrigatório">
         </app-campo-control-erro>
       </div>
       <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.estado')">
         <label for="estado" class="control-label">Estado</label>
-        <select class="form-control" id="estado" formControlName="estado">
+        <select class="form-control" id="estado" formControlName="estado" required>
           <!--Importante: dê preferencia por usar o pipe ASYNC na hora de utilizar informações que estão vindo de Observables no template HTML-->
           <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{estado.nome}}</option>
         </select>
@@ -114,6 +114,20 @@
       </div>
       <div class="form-check form-check-inline" *ngFor="let item of newsletterOp">
         <input class="form-check-input" type="radio" formControlName="newsletter" [value]="item.valor"> {{ item.desc }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group mt-3">
+    <div class="col-sm-3" [ngClass]="aplicaCssErro('termos')">
+      <div class="form-check">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" formControlName="termos" required>
+          <label class="form-check-label">Aceito os termos.</label>
+          <app-campo-control-erro
+            [mostrarErro]="!formulario.get('termos').valid" msgErro="Por favor, aceite os termos.">
+          </app-campo-control-erro>
+        </div>
       </div>
     </div>
   </div>

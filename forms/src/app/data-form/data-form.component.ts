@@ -18,6 +18,7 @@ export class DataFormComponent implements OnInit {
   cargos: any[];
   tecnologias: any[];
   newsletterOp: any[];
+  termos: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,7 +58,8 @@ export class DataFormComponent implements OnInit {
 
       cargo: [null],
       tecnologias: [null],
-      newsletter: ['s']
+      newsletter: ['s'],
+      termos: [null, Validators.requiredTrue]
     });
     // [Validators.required, Validators.min(3), Validators.max(20)]
   }
