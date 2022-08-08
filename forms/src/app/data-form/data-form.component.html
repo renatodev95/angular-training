@@ -27,6 +27,19 @@
     </div>
   </div>
 
+  <div class="form-group" [ngClass]="aplicaCssErro('confirmarEmail')">
+    <div class="col-sm-12">
+      <label for="confirmarEmail" class="form-label col-form-label">Confirmar Email</label>
+    </div>
+    <div class="col-sm-12">
+      <input type="email" class="form-control" id="confirmarEmail" placeholder="nome@email.com" formControlName="confirmarEmail" required/>
+      <app-campo-control-erro
+        [mostrarErro]="formulario.get('confirmarEmail').hasError('equalsTo')"
+        msgErro="Emails não são iguais.">
+      </app-campo-control-erro>
+    </div>
+  </div>
+
   <div formGroupName="endereco">
     <div class="row gy-2 gx-3 align-items-center">
       <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.cep')">
