@@ -5,9 +5,7 @@
     </div>
     <div class="col-sm-12">
       <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" required/>
-      <app-campo-control-erro
-        [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório">
-      </app-campo-control-erro>
+      <app-error-msg [control]="$any(formulario).get('nome')" label="Nome"></app-error-msg>
     </div>
   </div>
   <br/>
