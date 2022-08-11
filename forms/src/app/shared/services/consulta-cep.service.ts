@@ -12,6 +12,7 @@ export class ConsultaCepService {
   }
 
   consultaCEP(cep: string) {
+    console.log(cep)
     cep = cep.replace(/\D/g, '');
     if (cep !== null && cep !== '') {
       let validaCep = /^\d{8}$/;
