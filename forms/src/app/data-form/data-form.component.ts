@@ -8,14 +8,14 @@ import {empty, Observable} from "rxjs";
 import {FormValidations} from "../shared/form-validations";
 import {VerificaEmailService} from "./services/verifica-email.service";
 import {distinctUntilChanged, map, tap, switchMap} from "rxjs/operators";
+import {BaseFormComponent} from "../shared/base-form/base-form.component";
 
 @Component({
   selector: 'app-data-form',
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css'],
 })
-export class DataFormComponent implements OnInit {
-  formulario: FormGroup;
+export class DataFormComponent extends BaseFormComponent implements OnInit {
   // estados: EstadoBr[];
   estados: Observable<EstadoBr[]>;
   cargos: any[];
@@ -30,7 +30,9 @@ export class DataFormComponent implements OnInit {
     private http: HttpClient,
     private dropdownService: DropdownService,
     private cepService: ConsultaCepService,
-    private verificaEmailService: VerificaEmailService) {
+    private verificaEmailService: VerificaEmailService
+  ) {
+    super();
   }
 
   ngOnInit(): void {
@@ -101,78 +103,6 @@ export class DataFormComponent implements OnInit {
     */
   }
 
-  onSubmit() {
-    console.log(this.formulario)
-
-    let valueSubmit = Object.assign({}, this.formulario.value)
-
-    valueSubmit = Object.assign(valueSubmit, {
-      frameworks: valueSubmit.frameworks
-        .map((v, i) => v ? this.frameworks[i] : null)
-        .filter(v => v !== null)
-    });
-
-    console.log(valueSubmit)
-
-    if (this.formulario.valid) {
-      this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
-        .subscribe(dados => {
-            console.log(dados);
-            // reseta form
-            // this.formulario.reset();
-            // this.resetar();
-          },
-          (error: any) => alert('erro'));
-    } else {
-      console.log('formulario invalido')
-      this.verificaValidacoesForm(this.formulario);
-    }
-  }
-
-  verificaValidacoesForm(formGroup: FormGroup) {
-    // aplicando recursividade para validar os campos aninhados de 'endereco'
-    Object.keys(formGroup.controls).forEach(campo => {
-      console.log(campo)
-      const controle = formGroup.get(campo);
-      controle.markAsDirty();
-      if (controle instanceof FormGroup) {
-        this.verificaValidacoesForm(controle);
-      }
-    })
-  }
-
-  resetar() {
-    this.formulario.reset();
-  }
-
-  aplicaCssErro(campo: string) {
-    return {
-      'needs-validation': this.verificaValidTouched(campo),
-      'was-validated': this.verificaValidTouched(campo)
-    };
-  }
-
-  verificaValidTouched(campo: string) {
-    return (
-      !this.formulario.get(campo).valid &&
-      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
-    );
-  }
-
-  verificaRequired(campo: string) {
-    return (
-      this.formulario.get(campo).hasError('required') &&
-      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty));
-  }
-
-  // @ts-ignore
-  verificaEmailInvalido() {
-    let campoEmail = this.formulario.get('email');
-    if (campoEmail.errors) {
-      return campoEmail.errors.required && campoEmail.touched;
-    }
-  }
-
   consultaCEP() {
     let cep = this.formulario.get('endereco.cep').value;
     if (cep != null && cep !== '') {
@@ -228,7 +158,20 @@ export class DataFormComponent implements OnInit {
       .pipe(map(emailExiste => emailExiste ? {emailInvalido: true} : null))
   }
 
-  getCampo(campo: string) {
-    return this.formulario.get(campo);
+  submit() {
+    console.log(this.formulario)
+    let valueSubmit = Object.assign({}, this.formulario.value)
+    valueSubmit = Object.assign(valueSubmit, {
+      frameworks: valueSubmit.frameworks
+        .map((v, i) => v ? this.frameworks[i] : null)
+        .filter(v => v !== null)
+    });
+    console.log(valueSubmit);
+    this.http
+      .post('https://httpbin.org/post', JSON.stringify(valueSubmit))
+      .subscribe(dados => {
+          console.log(dados);
+        },
+        (error: any) => alert('erro'));
   }
 }
