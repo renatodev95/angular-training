@@ -1,8 +1,9 @@
-[{
-  "id": "1",
-  "sigla": "AC",
-  "nome": "Acre"
-},
+[
+  {
+    "id": "1",
+    "sigla": "AC",
+    "nome": "Acre"
+  },
   {
     "id": "2",
     "sigla": "AL",
@@ -132,4 +133,5 @@
     "id": "27",
     "sigla": "TO",
     "nome": "Tocantins"
-  }]
+  }
+]

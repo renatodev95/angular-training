@@ -9,6 +9,7 @@ import {FormValidations} from "../shared/form-validations";
 import {VerificaEmailService} from "./services/verifica-email.service";
 import {distinctUntilChanged, map, tap, switchMap} from "rxjs/operators";
 import {BaseFormComponent} from "../shared/base-form/base-form.component";
+import {Cidade} from "../shared/models/cidade";
 
 @Component({
   selector: 'app-data-form',
@@ -16,8 +17,9 @@ import {BaseFormComponent} from "../shared/base-form/base-form.component";
   styleUrls: ['./data-form.component.css'],
 })
 export class DataFormComponent extends BaseFormComponent implements OnInit {
-  // estados: EstadoBr[];
-  estados: Observable<EstadoBr[]>;
+  estados: EstadoBr[];
+  cidades: Cidade[];
+  // estados: Observable<EstadoBr[]>;
   cargos: any[];
   tecnologias: any[];
   newsletterOp: any[];
@@ -39,22 +41,13 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
 
     // this.verificaEmailService.verificarEmail('email@email.com').subscribe();
 
-    this.estados = this.dropdownService.getEstadosBr();
+    // this.estados = this.dropdownService.getEstadosBr();
+
+    this.dropdownService.getEstadosBr().subscribe(dados => this.estados = dados);
     this.cargos = this.dropdownService.getCargos();
     this.tecnologias = this.dropdownService.getTecnologias();
     this.newsletterOp = this.dropdownService.getNewsletter();
-
     this.frameworks = ['Angular', 'React', 'Vue', 'Sencha'];
-
-    // this.dropdownService.getEstadosBr().subscribe(dados => {
-    //     this.estados = dados;
-    //     console.log(dados);
-    //   });
-
-    // this.formulario = new FormGroup({
-    //   nome: new FormControl(null),
-    //   email: new FormControl(null)
-    // });
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
@@ -87,7 +80,17 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
       )
       .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
 
-    // [Validators.required, Validators.min(3), Validators.max(20)]
+    this.formulario.get('endereco.estado').valueChanges
+      .pipe(
+        tap(estado => console.log('Novo estado: ', estado)),
+        map(estado => this.estados.filter(e => e.sigla == estado)),
+        map(estados => estados && estados.length > 0 ? estados[0].id : empty()),
+        switchMap((estadoId: number) => this.dropdownService.getCidades(estadoId)),
+        tap(console.log)
+      )
+      .subscribe(cidades => this.cidades = cidades)
+
+    // this.dropdownService.getCidades(8).subscribe(console.log);
   }
 
   buildFrameworks() {

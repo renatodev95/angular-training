@@ -86,16 +86,18 @@
         <input type="text" class="form-control" id="bairro" formControlName="bairro" required>
         <app-error-msg [control]="$any(formulario).get('endereco.bairro')" label="Bairro"></app-error-msg>
       </div>
-      <div class="col-sm-4" [ngClass]="aplicaCssErro('endereco.cidade')">
+      <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.cidade')">
         <label for="cidade" class="control-label">Cidade</label>
-        <input type="text" class="form-control" id="cidade" formControlName="cidade" required>
-        <app-error-msg [control]="$any(formulario).get('endereco.cidade')" label="Cidade"></app-error-msg>
+        <select class="form-control" id="cidade" formControlName="cidade" required>
+          <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{cidade.nome}}</option>
+        </select>
+        <app-error-msg [control]="$any(formulario).get('endereco.cidade')" label="cidade"></app-error-msg>
       </div>
       <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.estado')">
         <label for="estado" class="control-label">Estado</label>
         <select class="form-control" id="estado" formControlName="estado" required>
           <!--Importante: dê preferencia por usar o pipe ASYNC na hora de utilizar informações que estão vindo de Observables no template HTML-->
-          <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{estado.nome}}</option>
+          <option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.nome}}</option>
         </select>
         <app-error-msg [control]="$any(formulario).get('endereco.estado')" label="Estado"></app-error-msg>
       </div>
