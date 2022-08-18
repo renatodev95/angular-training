@@ -24,13 +24,14 @@ export class CursosListaComponent implements OnInit {
   }
 
   onRefresh() {
-    this.cursos$ = this.service.list().pipe(
-      catchError(error => {
-        console.error(error);
-        this.handleError();
-        return EMPTY;
-      })
-    );
+    this.cursos$ = this.service.list()
+      .pipe(
+        catchError(error => {
+          console.error(error);
+          this.handleError();
+          return EMPTY;
+        })
+      );
   }
 
   handleError() {
