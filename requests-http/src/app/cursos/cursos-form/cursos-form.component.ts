@@ -72,15 +72,42 @@ export class CursosFormComponent implements OnInit {
     this.submitted = true;
     console.log(this.form.value);
     if (this.form.valid) {
-      this.service.create(this.form.value)
-        .subscribe(
-          success => {
-            this.alertService.showAlertSuccess('Curso registrado com sucesso!');
-            this.location.back();
-          },
-          error => this.alertService.showAlertDanger('Erro ao criar curso, tente novamente!'),
-          () => console.log('request completo')
-        )
+      console.log('submit');
+      let msgSuccess = 'Curso criado com sucesso!'
+      let msgError = 'Erro ao criar curso, tente novamente!'
+      if (this.form.value.id) {
+        msgSuccess = msgSuccess.replace('criado', 'atualizado');
+        msgError = msgError.replace('criar', 'atualizar');
+      }
+      this.service.save(this.form.value).subscribe(
+        success => {
+          this.alertService.showAlertSuccess(msgSuccess);
+          this.location.back();
+        },
+        error => {
+          this.alertService.showAlertDanger(msgError);
+        }
+      );
+
+      // if (this.form.value.id) {
+      //   this.service.update(this.form.value).subscribe(
+      //     success => {
+      //       this.alertService.showAlertSuccess('Curso atualizado com sucesso!');
+      //       this.location.back();
+      //     },
+      //     error => this.alertService.showAlertDanger('Erro ao atualizar curso, tente novamente!'),
+      //     () => console.log('update completo')
+      //   )
+      // } else {
+      //   this.service.create(this.form.value).subscribe(
+      //     success => {
+      //       this.alertService.showAlertSuccess('Curso criado com sucesso!');
+      //       this.location.back();
+      //     },
+      //     error => this.alertService.showAlertDanger('Erro ao criar curso, tente novamente!'),
+      //     () => console.log('request completo')
+      //   )
+      // }
     }
   }
 
