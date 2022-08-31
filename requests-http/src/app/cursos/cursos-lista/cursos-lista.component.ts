@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Curso} from "../curso";
-import {CursosService} from "../cursos.service";
 import {EMPTY, Observable, Subject} from "rxjs";
 import {catchError, switchMap, take} from "rxjs/operators";
 import {AlertModalService} from "../../shared/alert-modal.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {Cursos2Service} from "../cursos2.service";
 
 @Component({
   selector: 'app-cursos-lista',
@@ -23,7 +23,7 @@ export class CursosListaComponent implements OnInit {
 
   cursoSelecionado: Curso;
 
-  constructor(private service: CursosService, private alertService: AlertModalService, private router: Router, private route: ActivatedRoute, private modalService: BsModalService) {
+  constructor(private service: Cursos2Service, private alertService: AlertModalService, private router: Router, private route: ActivatedRoute, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
