@@ -1,6 +1,9 @@
-<div class="container mt-4">
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="customFile">
-    <label class="custom-file-label" for="customFile">Selecionar Arquivo</label>
+<div class="container mt-2">
+  <div>
+    <label for="customFileLabel" class="form-label"></label>
+    <input class="form-control" type="file" id="customFileLabel" (change)="onChange($event)" multiple>
   </div>
+</div>
+<div class="container mt-2">
+  <button type="submit" class="btn btn-primary" (click)="onUpload()" [disabled]="!files">Upload</button>
 </div>
