@@ -4,10 +4,15 @@
     <input class="form-control" type="file" id="customFileLabel" (change)="onChange($event)" multiple>
   </div>
   <div class="progress">
-    <div class="progress-bar" role="progressbar" aria-label="Example with label" [style.width]="progress+'%'">{{progress}}%
+    <div class="progress-bar" role="progressbar" aria-label="Example with label"
+         [style.width]="progress+'%'">{{progress}}%
     </div>
   </div>
 </div>
 <div class="container mt-2">
-  <button type="submit" class="btn btn-primary" (click)="onUpload()" [disabled]="!files">Upload</button>
+  <button type="button" class="btn btn-primary" (click)="onUpload()" [disabled]="!files">Upload</button>
+</div>
+<div class="container mt-2">
+  <button type="button" class="btn btn-primary me-2" (click)="onDownloadExcel()">Download Excel</button>
+  <button type="button" class="btn btn-primary " (click)="onDownloadPDF()">Download PDF</button>
 </div>

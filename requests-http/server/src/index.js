@@ -6,6 +6,14 @@ const app = express();
 // app.use(cors());
 app.use(express.json());
 
+app.get('/downloadExcel', (req, res) => {
+  res.download('./uploads/report.xls');
+});
+
+app.get('/downloadPDF', (req, res) => {
+  res.download('./uploads/report.pdf');
+});
+
 app.use(express.urlencoded({ extended: true }));
 
 const multipartMiddleware = multiparty({ uploadDir: './uploads' });
